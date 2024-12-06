@@ -12,13 +12,12 @@ console.log(
         .filter((line) => !check(line))
         .map((line) => {
             line = [...line];
-            while (!check(line)) {
-                line.sort((a, b) => {
-                    if (lt.has(pair(a, b))) return -1;
-                    if (gt.has(pair(b, a))) return 1;
-                    return 0; // lmao
-                });
-            }
+            line.sort((a, b) => {
+                if (lt.has(pair(a, b))) return -1;
+                if (gt.has(pair(b, a))) return 1;
+                return 0; // lmao
+            });
+            if (!check(line)) throw new Error("oops");
             return line;
         })
         .map((line) => line[Math.floor(line.length / 2)])
